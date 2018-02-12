@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Form Validation</title>
+	<style>
+		.error{
+			color:red;
+		}
+
+		.emai{
+			border: solid 2px green;
+		}
+
+		.error2{
+			color: green;
+		}
+		.textBoxError{
+			border: solid 2px red;
+	       color: red;
+
+		}
+	</style>
+</head>
+<body>
+
+
+
+<form method="POST" id="form" name="form" action="">
+    <label for="email" >Enter your email</label>
+    <input id="email" class="emai" name="email">
+	<p id="result"></p>
+	<label for="email">Enter your first name</label>
+	<input id="firstname" name="firstname">
+	<label for="address">address</label>
+	<input id="address" name="address">
+	 Yes: <input type="radio" name="opt" value="yes">
+    No: <input type="radio"  name="opt" value="No" checked="checked">
+	<p id="result2"></p>
+    <button id="submitform">Submit</button>
+	<p id="result3"></p>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script>
+$( document ).ready(function() {
+    $(function(){
+        $('#submitform').on('click',function(e){
+            e.preventDefault();  // do not allow the default form action
+            var emailaddress = $('#email').val();
+			var first_name = $('#firstname').val();
+			var addres = $('#address').val();
+		    var rbutton1 = $('input[name=opt]:checked').val();
+
+
+
+          	    	// get value entered from email field
+
+            $.ajax({
+                method: "POST",
+                url: "process.php",
+                data: { email: emailaddress,
+         			    firstname: first_name,
+						address: addres,
+						va: rbutton1
+						}
+
+
+            })
+                .done(function( data ) {  // capture the return from process.php
+                    var obj = $.parseJSON( data );
+                    var isValidForm = obj.valid;
+					var isValidForm2 = obj.valid2;
+					var isValidForm3 = obj.valid3;
+					var msgEmail = obj.msg_email;
+					var msgfirst = obj.msg_fname;
+					var vsuccess = obj.success;
+
+
+
+                    if(isValidForm == 1){  // place results on the page
+					     $('input[name="email"]').removeClass('textBoxError');
+                        $('#result').html('<div class="valid"></div>');
+                    } else {
+						 $('input[name="email"]').addClass('textBoxError');
+                        $('#result').html('<div class="error">'+msgEmail+'</div>');
+
+                    }
+					if(isValidForm2 == 1){  // place results on the page
+					     $('input[name="firstname"]').removeClass('textBoxError');
+                       $('#result2').html('<div class="valid"></div>');
+                    } else {
+						 $('input[name="firstname"]').addClass('textBoxError');
+                        $('#result2').html('<div class="error">'+msgfirst+'</div>');
+
+                    }
+
+					if(isValidForm3 == 0){  // place results on the page
+					$('#result3').html('<div class="error2">'+vsuccess+'</div>').show().delay(2000).fadeOut();
+					$("#form")[0].reset();
+
+                    }else{
+						 $('#result3').html('<div class="error2"></div>');
+					}
+
+                });
+        });
+    });
+
+	});
+
+</script>
+</body>
+</html>

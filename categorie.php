@@ -22,6 +22,17 @@ $body->setContent("categorie", array($result,"{$_GET['type']}"));
 
 //richiesta di specifica categoria
 if(isset($_GET['page'])){
+  if($_GET['type']==""){
+    //mostra prodotti uomo della categoria
+    $query="SELECT Products.id,Products.Name,Price,Images.id as idImage,Images.Place FROM Products
+            JOIN Images ON Products.id = Images.Product_idProduct
+            JOIN Catalogs ON Products.id_Catalogs=Catalogs.id
+            WHERE Images.Place='1'
+            AND Products.id_Category={$_GET['page']};";
+    $result = $db->getResult_array($query);
+    $body->setContent("prodottoMen", $result);//set prodotti uomo
+
+  }else{
   //mostra prodotti uomo della categoria
   $query="SELECT Products.id,Products.Name,Price,Images.id as idImage,Images.Place FROM Products
           JOIN Images ON Products.id = Images.Product_idProduct
@@ -31,10 +42,10 @@ if(isset($_GET['page'])){
           AND Products.id_Category={$_GET['page']};";
   $result = $db->getResult_array($query);
   $body->setContent("prodottoMen", $result);//set prodotti uomo
-
+}
 }else{
 
-  //query mostra tutti i prodotti
+  //query mostra tutti i prodotti di un catalogo specifico (uomo donna bambino)
   $query="SELECT Products.id,Products.Name,Price,Images.id as idImage,Images.Place FROM Products
           JOIN Images ON Products.id = Images.Product_idProduct
           JOIN Catalogs ON Products.id_Catalogs=Catalogs.id

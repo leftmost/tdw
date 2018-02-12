@@ -83,17 +83,17 @@ Class shop extends TagLibrary {
 		}
 		$result="";
 		foreach($data as $key => $value) {
-		 $result .= "<div class=\"product-item {$pars['type']}\">
-			<div class=\"product discount product_filter\">
-				<div class=\"product_image text-center\">
-					<img src=\"image.php?id={$value['idImage']}\"  style=\"width:auto;max-height:221px;max-width:221px;\"  alt=\"\">
-				</div>
-				<div class=\"product_info\">
-					<h6 class=\"product_name\"><a href=\"prodotto.php?id={$value['id']}\">{$value['Name']}</a></h6>
-					<div class=\"product_price\">{$value['Price']} €</div>
-				</div>
-			</div>
-			<div class=\"red_button add_to_cart_button\"><a href=\"prodotto.php?id={$value['id']}\">VISUALIZZA</a></div>
+		 $result .= "
+		 <div class=\"product-item {$pars['type']}\">
+				<div class=\"product discount product_filter\"><a href=\"prodotto.php?id={$value['id']}\">
+					<div class=\"product_image text-center\">
+						<img src=\"image.php?id={$value['idImage']}\"  style=\"width:auto;max-height:221px;max-width:221px;\"  alt=\"\">
+					</div>
+					<div class=\"product_info\">
+						<h6 class=\"product_name\"><a href=\"prodotto.php?id={$value['id']}\">{$value['Name']}</a></h6>
+						<div class=\"product_price\">{$value['Price']} €</div>
+					</div>
+				</a></div>
 		  </div>";
 	  }
 	  return $result;
@@ -255,10 +255,10 @@ Class shop extends TagLibrary {
 
 		return $result = "<div class=\"col-lg-6 get_in_touch_col\" style=\"margin-left: 200px;\">
 			<div class=\"get_in_touch_contents text-center\">
-				<h3>Modifica Informazioni</h3>
+				<h3 style=\"margin-bottom: 30px;\">Modifica Informazioni</h3>
 				<form method=\"post\" action=\"profilo.php?page=modifica\">
 					<div>
-						<input class=\"form_input input_name input_ph\" type=\"text\" name=\"username\" placeholder=\"Username\" required=\"required\" data-error=\"Username is required.\" value=\"{$data[0]['Username']}\">
+						<input class=\"form_input input_name input_ph\" type=\"hidden\" name=\"username\" placeholder=\"Username\" required=\"required\" data-error=\"Username is required.\" value=\"{$data[0]['Username']}\">
 						<input class=\"form_input input_email input_ph\" type=\"email\" name=\"email\" placeholder=\"Email\" required=\"required\" data-error=\"Valid email is required.\" value=\"{$data[0]['Email']}\">
 						<input class=\"form_input input_name input_ph\" type=\"password\" name=\"password\" placeholder=\"Password\" required=\"required\" data-error=\"Password is required.\" value=\"{$data[0]['Password']}\">
 						<input class=\"form_input input_name input_ph\" type=\"text\" name=\"name\" placeholder=\"Nome\" value=\"{$data[0]['Name']}\">

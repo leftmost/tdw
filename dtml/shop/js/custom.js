@@ -185,7 +185,7 @@ jQuery(document).ready(function($)
     	if($('.timer').length)
     	{
     		// Uncomment line below and replace date
-	    	var target_date = new Date("Feb 8, 2018").getTime();
+	    	var target_date = new Date("Feb 22, 2018").getTime();
 
 
 			// variables for time units

@@ -14,6 +14,20 @@
 <link rel="stylesheet" type="text/css" href="dtml/shop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="dtml/shop/plugins/OwlCarousel2-2.2.1/animate.css">
 <[css::css library="shop"]>
+<style media="screen">
+
+.find{
+	width: 100%;
+	padding: 6px 20px;
+	margin: 8px 50px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background-color: white;
+}
+
+</style>
 
 </head>
 
@@ -47,13 +61,16 @@
 							<a href="index.php">TDW<span>2018</span></a>
 						</div>
 						<nav class="navbar">
+							<form class="" id="form1" action="search.php" method="post">
 							<ul class="navbar_menu">
+								<li><input class="find" type="text" id="lname" name="ricerca" placeholder=""></li>
+								<li><a href="javascript:;" onclick="document.getElementById('form1').submit();"><i class="fa fa-search" aria-hidden="true"></i></a></li>
 								<li><a href="index.php">HOME</a></li>
 								<li><a href="categorie.php?type=Men">UOMO</a></li>
 								<li><a href="categorie.php?type=Women">DONNA</a></li>
 								<li><a href="categorie.php?type=Kids">BAMBINI</a></li>
-
 							</ul>
+							</form>
 
 							<ul class="top_nav_menu">
 
@@ -75,6 +92,7 @@
 							</ul>
 
 							<ul class="navbar_user">
+
 								<li class="checkout">
 									<a href="profilo.php?page=carrello">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
