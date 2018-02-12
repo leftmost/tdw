@@ -1,0 +1,98 @@
+<!-- BODY-->
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+  <!-- INDIRIZZO -->
+  <[top::address_bar library="lumino"]>
+  <!-- END_INDIRIZZO -->
+
+  <!-- CONTENT -->
+  <div class="row" style="margin-top:50px">
+    <div class="col-md-6 col-md-offset-3">
+      <[notification::setmessage ok="Success!" library="lumino"]>
+      <form method="post">
+        <input name="oldUsername" hidden value="<[username]>">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-md-12">
+
+                <!-- Titolo -->
+                <div class="form-group">
+                  <div class="panel-heading"><[title]></div>
+                </div>
+
+                  <!-- Username -->
+                  <div class="form-group">
+                    <label for="username">Username*</label>
+                    <input name="username" class="form-control" value="<[username]>" required>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" name="email" class="form-control" value="<[email]>" required>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="form-group">
+                    <label>Password*</label>
+                    <input class="form-control" name="password" type="password" value="<[password]>" required>
+                  </div>
+
+                  <!-- Groups -->
+
+                  <div class="form-group options">
+                    <label>Groups*</label>
+        					  <[check::checkbox  name="groups" check="Y" id="Name" option="Name" library="lumino"]>
+                    <[nochecked::checkbox name="groups" id="Name" option="Name" library="lumino"]>
+
+                  </div>
+            </div>
+          </div>
+        </div> <!-- .row -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading">Custumer List (Optional)<span class="pull-right clickable panel-toggle panel-collapsed"><em class="fa fa-toggle-down"></em></span></div>
+          <div class="panel-body" style="display: none;">
+            <div class="col-md-12">
+
+              <!-- Name -->
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input name="name" class="form-control" value="<[name]>" placeholder="Optional">
+              </div>
+
+              <!-- Surname -->
+              <div class="form-group">
+                <label for="surname">Surname</label>
+                <input name="surname" class="form-control" value="<[surname]>" placeholder="Optional">
+              </div>
+
+              <!-- Address -->
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input name="address" class="form-control" value="<[address]>" placeholder="Optional">
+              </div>
+
+              <!-- City -->
+              <div class="form-group">
+                <label for="city">City</label>
+                <input name="city" class="form-control" value="<[city]>" placeholder="Optional">
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+      <div class="col-md-12">
+          <button type="submit"  class="btn btn-primary"><[submit]></button>
+          <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+        </div></div>
+      </form>
+    </div>
+  </div>
+  <!-- END_CONTENT -->
+
+</div>
+<!-- END_BODY-->

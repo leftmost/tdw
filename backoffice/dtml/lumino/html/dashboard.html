@@ -1,0 +1,77 @@
+<!-- BODY-->
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+  <!-- INDIRIZZO -->
+  <div class="row">
+    <ol class="breadcrumb">
+      <li><a href="#">
+        <em class="fa fa-home"></em>
+      </a></li>
+      <li class="active">Dashboard</li>
+    </ol>
+  </div>
+  <!-- END_INDIRIZZO -->
+
+  <div class="col-md-6 col-md-offset-3" style="margin-top:25px">
+  <div class="panel panel-default ">
+					<div class="panel-heading">
+						Profile
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body timeline-container">
+						<ul class="timeline">
+							<li>
+								<div class="timeline-badge"><i class="glyphicon glyphicon-user"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">My account</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Username: <[username]></p>
+                    <p>Email: <[email]></p>
+                    <p>Password: <[password]></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge primary"><i class="glyphicon glyphicon-list-alt"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Personal informations</h4>
+									</div>
+									<div class="timeline-body">
+                    <p>Name: <[name]></p>
+                    <p>Surname: <[surname]></p>
+                    <p>Address: <[address]></p>
+                    <p>City: <[city]></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><i class="glyphicon glyphicon-inbox"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Group</h4>
+									</div>
+									<div class="timeline-body">
+                    <ul style="list-style-type:circle">
+                      <[listGroup::point value="Name_Groups" library="lumino"]>
+                    </ul>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge primary"><i class="glyphicon glyphicon-th-list"></i></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Services</h4>
+									</div>
+									<div class="timeline-body">
+                    <[data::report library="lumino"]>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+</div>
+<!-- END_BODY-->

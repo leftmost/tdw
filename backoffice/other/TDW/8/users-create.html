@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form example</title>
+<style>
+	
+	label {
+		width: 200px;
+	}
+	
+	div {
+		
+	}
+	
+	div.label{
+		clear: left;
+		float: left;
+		width: 150px;
+		
+	}
+	
+	div.widget {
+		float: left;
+		width: 310px;
+		
+	}
+	
+	div.row {
+		width: auto;
+		height: auto;
+	}
+	
+	div.button {
+		clear: left; 
+		padding: 20px 0px 0px 150px;
+	}
+	
+	input {
+		padding: 4px 8px 4px 8px;
+		border: 1px solid silver;
+		border-radius: 3px; 
+		width: 200px;
+	}
+	
+	input.small {
+		width: 150px;
+	}
+	
+	input.large {
+		width: 300px;
+	}
+	
+input.x-large {
+		width: 400px;
+	}
+	
+	input:focus {
+		box-shadow: 0px 0px 5px #aaaaff;
+		outline: 0;
+	}
+	
+	button {
+		padding: 10px 10px 10px 10px;
+	}
+	
+	input:invalid {
+		border: 1px solid blue;
+		
+	}
+	
+	
+</style>
+<script  src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script>
+
+	$(document).ready(function(){
+		// $('input').css('border','1px solid green');
+		
+		$('body').css({
+			'font-family': 'arial, verdana',
+			'font-size': '11pt'
+		});
+
+		$('input').css({'width':'200px'});
+		$('input.small').css({'width':'100px'});
+		$('input.large').css({'width':'300px'});
+		
+		$('div.label').css({
+			'clear': 'left',
+			'float': 'left',
+			'width': '150px'
+		});
+		
+		$('form').append("<div id='errormessage'>Error Message</div>");
+		$('#errormessage').hide()
+			.css({
+							'position' : 'absolute',
+							'border' : '1px #ffaaaa solid',
+							'background-color' : '#ffaaaa',
+							'width' : '200px',
+							'height' : 'auto',
+							'border-radius' : '3px',
+							'text-align' : 'center',
+							'padding' : '5px'
+							});
+		
+		
+		$('button.submit').click(function(){
+			
+			
+			$("input[mandatory]").each(function(){
+				
+					if ($(this).attr('message')) { 
+						// validation
+						
+						var position = $(this).position();
+						
+						
+						$('#errormessage')
+							.html($(this).attr('message'))							
+							.css({
+								'left' : position.left+50,
+								'top' : position.top+30
+								})
+							.fadeIn("slow", function(){
+								$(this).focus(fuction(){
+									$('#errormessage').fadeOut("slow");
+								});
+							});
+						
+					}
+				
+			});
+		});
+		
+		
+	});
+	
+	
+
+</script>
+</head>
+<body>
+<h1>Create User</h1>
+
+	<form name="myForm" method="POST" action="users-create.php" style="border: 1px gray solid;">
+		<div class="row">
+			<div class="label"><label for="name">Name</label></div>
+			<div class="widget"><input autofocus mandatory message="Questo campo è obligatorio!" type="text" name="name" id="name" class=""/></div>	
+		</div>
+		
+		<div class="row">
+			<div class="label"><label for="surname">Surname</label></div>
+			<div class="widget"><input  type="text" name="surname" message="Questo campo è obligatorio!" id="surname" class="large"/></div>
+		</div>
+		
+		<div class="row">
+			<div class="label"><label for="email">Email</label></div>
+			<div class="widget"><input type="email" name="email" id="email" class="x-large"/></div>
+		</div>
+		
+		<div class="row">
+			<div class="label"><label for="email">Note</label></div>
+			<div class="widget"><textarea cols="80" rows="10" name="note" id="note"></textarea></div>
+		</div>
+		
+		<div class="button">
+			<button class="submit" type="submit">Create</button>
+		</div>
+	</form>
+	
+</body>
+</html>

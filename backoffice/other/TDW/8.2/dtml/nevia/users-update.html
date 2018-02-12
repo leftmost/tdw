@@ -1,0 +1,46 @@
+<div id="content">
+	<div class="container">
+	
+		<div class="form">
+			<h1>Update User</h1>
+
+				<[notification::setmessage ok="User saved!" ko="Ouch .. there was a problem!" library="nevia"]>
+
+				
+					<form method="post" action="users-update.php" name=dataentry id="dataentry">
+						<input type="hidden" name="step" value="2" />
+						<input type="hidden" name="id" value="<[id]>" />
+						<fieldset>
+							<div>
+								<label for="id_dummy" accesskey="U">id:</label>
+								<input name="id_dummy" type="text" id="id_dummy" value="<[id]>" disabled/>
+							</div>
+							<div>
+								<label for="name" accesskey="U">Name:</label>
+								<input name="name" type="text" id="name"  value="<[name]>"/>
+							</div>
+							<div>
+								<label for="surname" accesskey="U">Surname:</label>
+								<input name="surname" type="text" class="large" id="surname"  value="<[surname]>"/>
+							</div>
+
+							<div>
+								<label for="email" accesskey="E">Email: <span>*</span></label>
+								<input name="email" type="email" class="x-large" id="email"  value="<[email]>" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" />
+							</div>
+
+							<div>
+								<label for="note" accesskey="C">Note: <span>*</span></label>
+								<textarea name="note" cols="60" rows="8" id="note" spellcheck="true"><[note]></textarea>
+							</div>
+
+						</fieldset>
+
+						<input type="submit" class="submit" id="submit" value="Save" />
+						<div class="clearfix"></div>
+
+					</form>
+		</div>
+	</div>
+</div>
+

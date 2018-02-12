@@ -1,0 +1,18 @@
+UPDATE ITEM
+
+STEP 0: report
+
+	1. query SELECT * (ad esempio users)
+	2. emissione report con la lista dei risultati (ad es. table html)
+
+
+STEP 1: form precaricata
+	
+	1. attraverso la chiave recuperare le informazioni dell'item dal db (query)
+	2. emissione form precaricata con il risultato della query
+	
+STEP 2: transazione
+
+	1. update dell'item sul db
+	2. emissione notifica
+	

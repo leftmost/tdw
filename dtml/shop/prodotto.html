@@ -1,0 +1,161 @@
+<style media="screen">
+  .im{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+  }
+</style>
+ <div class="container single_product_container">
+		<div class="row">
+			<div class="col">
+
+				<!-- Breadcrumbs -->
+
+				<div class="breadcrumbs d-flex flex-row align-items-center">
+					<ul>
+						<li><a href="index.php">Home</a></li>
+            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i><[catalog]></a></li>
+						<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i><[category]></a></li>
+						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i><[name]></a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-7">
+				<div class="single_product_pics">
+					<div class="row">
+						<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
+							<div class="single_product_thumbnails">
+								<ul>
+									<li><img class="single_product_image_background_thumb" style="background-image:url(image.php?id=<[id_product]>&n=1)" alt="" data-image="image.php?id=<[id_product]>&n=1"></li>
+									<li class="active"><img class="single_product_image_background_thumb" style="background-image:url(image.php?id=<[id_product]>&n=2)" alt="" data-image="image.php?id=<[id_product]>&n=2"></li>
+									<li><img class="single_product_image_background_thumb" style="background-image:url(image.php?id=<[id_product]>&n=3)" alt="" data-image="image.php?id=<[id_product]>&n=3"></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-9 image_col order-lg-2 order-1">
+							<div class="single_product_image">
+								<div class="single_product_image_background" style="background-image:url(image.php?id=<[id_product]>&n=2)"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="product_details">
+					<div class="product_details_title" >
+						<h2><[name]></h2>
+						<h4><[brand]></h4>
+					</div>
+					<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+						<span class="ti-truck"></span><span >Consegna gratuita</span>
+					</div>
+					<div class="original_price"><[original_price]></div>
+					<div name="add" class="product_price"><[price]></div>
+
+					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+
+						<div class="red_button add_to_cart_button" style="margin-left:0px;" id="aggiungi"><a  href="#add">acquista</a></div>
+            <div id="risultato">
+
+            </div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Tabs -->
+
+	<div class="tabs_section_container">
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="tabs_container">
+						<ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+
+					<!-- Tab Description -->
+
+					<div id="tab_1" class="tab_container active">
+						<div class="row">
+							<div class="col-lg-5 desc_col">
+								<div class="tab_title">
+									<h4>Descrizione</h4>
+								</div>
+								<div class="tab_text_block">
+									<h2><[brand]></h2>
+									<p><[description]></p>
+								</div>
+								<div class="tab_image">
+									<img src="image.php?id=<[id_product]>&n=3" alt="">
+								</div>
+								<div class="tab_text_block">
+																	</div>
+							</div>
+							<div class="col-lg-5 offset-lg-2 desc_col">
+								<div class="tab_image">
+									<img src="image.php?id=<[id_product]>&n=1" alt="">
+								</div>
+								<div class="tab_text_block">
+									<h2><[category]></h2>
+									<p><[description]></p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tab Additional Info -->
+
+					<div id="tab_2" class="tab_container">
+						<div class="row">
+							<div class="col additional_info_col">
+								<div class="tab_title additional_info_title">
+									<h4>Altre Informazioni</h4>
+								</div>
+								<p>COLORE:<span>colore</span></p>
+								<p>TAGLIA:<span>taglia</span></p>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#aggiungi").click(function(){
+        $.post("carrello.php", { id:"<[id_product]>"}, function(msg){ $("#risultato").html(msg);});
+    });
+    });
+
+    $(document).ready(function() {
+      $("#aggiungi").click(function(){
+        $.post("notifica.php", { id:"<[id_product]>"}, function(msg){ $("#notifica").html(msg);});
+    });
+    });
+
+    setTimeout(function(){
+  $('#delete').remove();
+}, 3000);
+  </script>

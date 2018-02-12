@@ -1,0 +1,87 @@
+<!-- BODY-->
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+  <!-- INDIRIZZO -->
+  <[top::address_bar library="lumino"]>
+  <!-- END_INDIRIZZO -->
+
+  <!-- CONTENT -->
+  <div class="row" style="margin-top:50px">
+    <div class="col-md-6 col-md-offset-3">
+      <[notification::setmessage ok="Success!" library="lumino"]>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="panel-heading"><center><[title]></center></div>
+            </div>
+            <form name="form" enctype="multipart/form-data" method="post">
+              <input type="hidden" name="id" value="<[id]>">
+              <input type="hidden" name="oldArea" value="<[area]>">
+              <input type="hidden" name="oldSector" value="<[sector]>">
+              <fieldset>
+                <div class="form-group">
+  								<label for="name">Name*</label>
+  								<input type="text" name="name" class="form-control" value="<[name]>" required>
+  							</div>
+
+                <div class="form-group">
+                  <label for="brand">Brand*</label>
+                  <input name="brand" class="form-control" value="<[brand]>" required>
+                </div>
+
+                <div class="form-group">
+  								<label for="price">Price*</label>
+  								<input type="number" name="price" step="0.01" class="form-control" value="<[price]>" required placeholder="$ insert only value">
+  							</div>
+
+                <div class="form-group">
+                <label>Category*</label>
+  							<[optionCategory::form_option value="id" option="Name" name="category"  library="lumino"]>
+  							</div>
+
+                <div class="form-group">
+                <label>Catalog*</label>
+  							<[optionCatalogs::form_option value="id" option="Name" name="catalog" library="lumino"]>
+  							</div>
+
+                <div class="form-group">
+                <label>Area*</label>
+  							<[optionWarehouse::form_option value="Area" option="Area" name="warehouse" library="lumino"]>
+  							</div>
+
+                <div id="risultato" class="form-group">
+  							</div>
+
+                <div class="form-group">
+  								<label for="price">Amount*</label>
+  								<input type="number" name="amount" class="form-control" value="<[amount]>" required>
+  							</div>
+
+                <div class="form-group">
+  								<label for="description">Description</label>
+  								<textarea name="description" class="form-control" rows="3" placeholder="Optional"><[description]></textarea>
+  							</div>
+
+              </fieldset>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary"><[submit]></button>
+                <button type="reset" class="btn btn-default">Reset</button>
+              </div>
+
+						</form>
+          </div> <!--form>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END_CONTENT -->
+</div>
+<!-- END_BODY-->
+<script type="text/javascript">
+  $(document).ready(function() {
+       var area = $("#warehouse option:selected").val();
+      $.post("ajax.php", { area: area, sector:"<[sector]>" }, function(msg){ $("#risultato").html(msg);});
+  });
+</script>

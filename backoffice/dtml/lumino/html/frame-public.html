@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="favicon.ico" type="dtml/shop/images/ico">
+		<title>TDW2018 - Dashboard</title>
+
+		<link href="dtml/lumino/css/bootstrap.min.css" rel="stylesheet">
+		<link href="dtml/lumino/css/font-awesome.min.css" rel="stylesheet">
+		<link href="dtml/lumino/css/datepicker3.css" rel="stylesheet">
+		<link href="dtml/lumino/css/styles.css" rel="stylesheet">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script>
+		function close() {
+		  $('#close').remove()
+		}
+		</script>
+		<!-- mandatory checkbox -->
+		<script>
+		$(function(){
+			var requiredCheckboxes = $('.options :checkbox[required]');
+			requiredCheckboxes.change(function(){
+				if(requiredCheckboxes.is(':checked')) {
+					requiredCheckboxes.removeAttr('required');
+				} else {
+					requiredCheckboxes.attr('required', 'required');
+				}
+			});
+		});
+		</script>
+
+		<script type="text/javascript">
+		  $(document).ready(function() {
+		      $('#warehouse').on('change', function () {
+		       var area = $("#warehouse option:selected").val();
+		      $.post("ajax.php", { area: area, sector:"" }, function(msg){ $("#risultato").html(msg);});
+		    });
+		  });
+		</script>
+
+		<style>
+			.fileUpload {
+	    position: relative;
+	    overflow: hidden;
+			}
+			.fileUpload input.upload {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    margin: 0;
+	    padding: 0;
+	    font-size: 20px;
+	    cursor: pointer;
+	    opacity: 0;
+	    filter: alpha(opacity=0);
+			}
+			.form-control {height: 42px;}
+		</style>
+
+		<!--Custom Font-->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!-- SIDEBAR -->
+		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+						<a class="navbar-brand" href="dashboard.php"><span>TDW</span>2018</a>
+						<ul class="nav navbar-top-links navbar-right">
+							<li class="dropdown">
+								<a class="dropdown-toggle count-info" href="logout.php" aria-expanded="true">
+								<em class="fa fa-power-off"></em>
+								</a>
+							</li>
+						</ul>
+
+				</div><!-- /.container-fluid -->
+			</nav>
+
+			<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+				<div class="profile-sidebar">
+					<div class="profile-userpic">
+						<img src="image.php?id=0" width="50" height="50" class="img-responsive" alt="">
+					</div>
+					<div class="profile-usertitle">
+						<div class="profile-usertitle-name"><[username]></div>
+						<div class="profile-usertitle-status"><a href="dashboard.php"><span class="fa fa-user-plus"></span> Account</a></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="divider"></div>
+
+
+				<form role="search">
+					<div class="form-group">
+					</div>
+				</form>
+
+
+				<!-- Menù -->
+				<ul class="nav menu">
+					<!-- Dashboard -->
+					<li class=""><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+					<!-- END_Dashboard -->
+
+					<!-- Users -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Users">
+							<em class="fa fa-user-plus">&nbsp;</em>
+							 Users
+							<span data-toggle="collapse" href="#Users" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Users">
+							<li>
+								<a class="" href="users.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Users List
+								</a>
+							</li>
+							<li>
+								<a class="" href="users.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Users Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="users.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Users Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- END_Users -->
+
+					<!-- Groups -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Groups">
+							<em class="fa fa-users">&nbsp;</em>
+							 Groups
+							<span data-toggle="collapse" href="#Groups" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Groups">
+							<li>
+								<a class="" href="groups.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Groups List
+								</a>
+							</li>
+							<li>
+								<a class="" href="groups.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Groups Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="groups.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Groups Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- END_Groups -->
+
+					<!-- Services -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Services">
+							<em class="fa fa-sitemap">&nbsp;</em>
+							 Services
+							<span data-toggle="collapse" href="#Services" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Services">
+							<li>
+								<a class="" href="services.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Services List
+								</a>
+							</li>
+							<li>
+								<a class="" href="services.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Services Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="services.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Services Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- END_Services -->
+
+					<!-- Product -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Product">
+							<em class="fa fa-cube">&nbsp;</em>
+							 Products
+							<span data-toggle="collapse" href="#Product" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Product">
+							<li>
+								<a class="" href="products.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Products List
+								</a>
+							</li>
+							<li>
+								<a class="" href="products.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Products Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="products.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Products Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- END_Product -->
+
+					<!-- Orders -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Orders">
+							<em class="fa fa-shopping-cart">&nbsp;</em>
+							 Orders
+							<span data-toggle="collapse" href="#Orders" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Orders">
+							<li>
+								<a class="" href="orders.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Orders List
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- END_Orders -->
+
+					<!-- Category -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Category">
+							<em class="fa fa-folder-open">&nbsp;</em>
+							 Category
+							<span data-toggle="collapse" href="#Category" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Category">
+							<li>
+								<a class="" href="category.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Category List
+								</a>
+							</li>
+							<li>
+								<a class="" href="category.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Category Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="category.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Category Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- END_Category -->
+
+					<!-- Catalog -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Catalog">
+							<em class="fa fa-book">&nbsp;</em>
+							 Catalog
+							<span data-toggle="collapse" href="#Catalog" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Catalog">
+							<li>
+								<a class="" href="catalog.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Catalog List
+								</a>
+							</li>
+							<li>
+								<a class="" href="catalog.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Catalog Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="catalog.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Catalog Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- END_Catalog -->
+
+					<!-- Warehouse -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Warehouse">
+							<em class="fa fa-bank">&nbsp;</em>
+							 Warehouse
+							<span data-toggle="collapse" href="#Warehouse" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Warehouse">
+							<li>
+								<a class="" href="warehouse.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Warehouse List
+								</a>
+							</li>
+							<li>
+								<a class="" href="warehouse.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Warehouse Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="warehouse.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Warehouse Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- END_Warehouse -->
+
+					<!-- Windows -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Windows">
+							<em class="fa fa-window-restore">&nbsp;</em>
+							 Windows
+							<span data-toggle="collapse" href="#Windows" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Windows">
+							<li>
+								<a class="" href="windows.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Windows List
+								</a>
+							</li>
+							<li>
+								<a class="" href="windows.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Windows Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="windows.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Windows Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- .Windows -->
+
+					<!-- Status -->
+					<li class="parent ">
+						<a data-toggle="collapse" href="#Status">
+							<em class="fa fa-tasks">&nbsp;</em>
+							 Status
+							<span data-toggle="collapse" href="#Status" class="icon pull-right">
+								<em class="fa fa-plus"></em>
+							</span>
+						</a>
+						<ul class="children collapse" id="Status">
+							<li>
+								<a class="" href="status.php?page=list">
+								<span class="fa fa-arrow-right">&nbsp;</span> Status List
+								</a>
+							</li>
+							<li>
+								<a class="" href="status.php?page=insert">
+								<span class="fa fa-arrow-right">&nbsp;</span> Status Insert
+								</a>
+							</li>
+							<li>
+								<a class="" href="status.php?page=update">
+								<span class="fa fa-arrow-right">&nbsp;</span> Status Update
+								</a>
+							</li>
+						</ul>
+					</li>
+					<!-- .Status -->
+
+				</ul>
+				<!-- END_Menù -->
+			</div>
+
+		</div>
+		<!-- END_SIDEBAR -->
+
+		<!-- PAGE -->
+		<[body]>
+		<!-- END_PAGE -->
+
+		<script src="dtml/lumino/js/jquery-1.11.1.min.js"></script>
+		<script src="dtml/lumino/js/bootstrap.min.js"></script>
+		<script src="dtml/lumino/js/chart.min.js"></script>
+		<script src="dtml/lumino/js/chart-data.js"></script>
+		<script src="dtml/lumino/js/easypiechart.js"></script>
+		<script src="dtml/lumino/js/easypiechart-data.js"></script>
+		<script src="dtml/lumino/js/bootstrap-datepicker.js"></script>
+		<script src="dtml/lumino/js/custom.js"></script>
+
+		<!-- <script>
+		window.onload = function () {
+			var chart1 = document.getElementById("line-chart").getContext("2d");
+			window.myLine = new Chart(chart1).Line(lineChartData, {
+				responsive: true,
+				scaleLineColor: "rgba(0,0,0,.2)",
+				scaleGridLineColor: "rgba(0,0,0,.05)",
+				scaleFontColor: "#c5c7cc"
+			});
+		};
+		</script>
+
+	</body>
+</html>

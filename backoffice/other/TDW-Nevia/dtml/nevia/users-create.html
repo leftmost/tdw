@@ -1,0 +1,44 @@
+<!-- 960 Container -->
+<div class="container floated>
+<!-- Page Content -->
+<div class="floated" style= "width: 220px; margin: auto">
+  <section class="page-content">
+    <h3 class="margin">Users create</h3>
+    <!-- Contact Form -->
+    <section id="contact">
+      <!-- Success Message -->
+      <mark id="message"></mark>
+      <!-- Form -->
+      <form method="post" action="users-create.php">
+        <input type="hidden" name="step" value="1"/>
+        <fieldset>
+
+          <div>
+            <label for="name" accesskey="U">Name:</label>
+            <input name="name" type="text" id="name" />
+          </div>
+
+          <div>
+            <label for="surname" accesskey="E">Surname: </label>
+            <input name="surname" type="text" id="surname" />
+          </div>
+
+        </fieldset>
+        <div >
+        <[notification::setmessage ok="User Created" ko="Ouch .. There was a problem!" library="nevia"]>
+        </div>
+        <input type="submit" class="submit" id="submit" value="Inserisci" style="padding-left: 87px; padding-right:  87px;"/>
+
+        <div class="clearfix"></div>
+      </form>
+
+    </section>
+    <!-- Contact Form / End -->
+
+  </section>
+
+</div>
+
+<!-- Page Content / End -->
+</div>
+<!-- 960 Container / End -->

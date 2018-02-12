@@ -1,0 +1,43 @@
+<div id="content">
+	<div class="container">
+	
+		<div class="form">
+			<h1>Create User</h1>
+
+				<[notification::setmessage ok="User created!" ko="Ouch .. there was a problem!" library="nevia"]>
+
+				
+					<form method="post" action="users-create.php" name=dataentry id="dataentry">
+						<input type="hidden" name="step" value="1" />
+						
+						<fieldset>
+
+							<div>
+								<label for="name" accesskey="U">Name:</label>
+								<input name="name" type="text" id="name" />
+							</div>
+							<div>
+								<label for="surname" accesskey="U">Surname:</label>
+								<input name="surname" type="text" class="large" id="surname" />
+							</div>
+
+							<div>
+								<label for="email" accesskey="E">Email: <span>*</span></label>
+								<input name="email" type="email" class="x-large" id="email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" />
+							</div>
+
+							<div>
+								<label for="note" accesskey="C">Note: <span>*</span></label>
+								<textarea name="note" cols="60" rows="8" id="note" spellcheck="true"></textarea>
+							</div>
+
+						</fieldset>
+
+						<input type="submit" class="submit" id="submit" value="Create" />
+						<div class="clearfix"></div>
+
+					</form>
+		</div>
+	</div>
+</div>
+

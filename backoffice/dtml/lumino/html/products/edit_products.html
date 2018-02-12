@@ -1,0 +1,80 @@
+<!-- BODY-->
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+  <!-- INDIRIZZO -->
+  <div class="row">
+    <ol class="breadcrumb">
+      <li>
+        <a href="dashboard.php"><em class="fa fa-home"></em></a>
+      </li>
+      <li class="active">Products</li>
+      <li class="active">Edit Products</li>
+    </ol>
+  </div>
+  <!-- END_INDIRIZZO -->
+
+  <!-- TITLE -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Edit Products</h1>
+    </div>
+  </div>
+  <!-- END_TITLE -->
+
+  <!-- CONTENT -->
+  <div class="row">
+    <[notification::setmessage ok="Success!" library="lumino"]>
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+				<div class="panel-heading">Article</div>
+				<div class="panel-body">
+					<div class="col-lg-12">
+						<form method="post" action="products.php?page=save">
+              <input type="hidden" name="id" value="<[id]>">
+              <fieldset>
+
+                <div class="form-group">
+  								<label for="name">Name</label>
+  								<input name="name" class="form-control" value="<[name]>">
+  							</div>
+
+                <div class="form-group">
+                  <label for="brand">Brand</label>
+                  <input name="brand" class="form-control" value="<[brand]>">
+                </div>
+
+                <div class="form-group">
+  								<label for="price">Price</label>
+  								<input name="price" class="form-control" value="<[price]>">
+  							</div>
+
+                <div class="form-group">
+                <label>Category</label>
+  							<[optionCategory::form_option value="id" option="Name" name="category"  library="lumino"]>
+  							</div>
+
+                <div class="form-group">
+                <label>Catalog</label>
+  							<[optionCatalogs::form_option value="id" option="Name" name="catalog" library="lumino"]>
+  							</div>
+
+                <div class="form-group">
+  								<label for="description">Description</label>
+  								<textarea name="description" class="form-control" rows="3"><[description]></textarea>
+  							</div>
+
+              </fieldset>
+              <button type="submit"  class="btn btn-primary">Save</button>
+              <button type="reset" class="btn btn-default">Reset</button>
+
+						</form>
+          </div>
+				</div>
+      </div>
+    </div>
+  </div>
+  <[notification::setmessage ok="Users edited" ko="Ouch .. There was a problem!" library="lumino"]>
+  <!-- END_CONTENT -->
+
+</div>
+<!-- END_BODY-->
