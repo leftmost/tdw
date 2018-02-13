@@ -1,88 +1,3 @@
-<style media="screen">
-  .im{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-
-    $primary-color: #fff;
-$accent-color: #009688;
-
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-}
-
-body {
-	font-family: "Roboto", sans-serif;
-	background: linear-gradient(to right bottom, #1b1b1e, #333);
-}
-
-.container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-}
-
-.list {
-	flex: 0 0 20rem;
-}
-
-.list__item {
-	position: relative;
-	&:hover > .label {
-		color: $accent-color;
-		&::before {
-			border: 0.5rem solid $accent-color;
-			margin-right: 2rem;
-		}
-	}
-}
-
-.radio-btn {
-	position: absolute;
-	opacity: 0;
-	visibility: hidden;
-	&:checked + .label {
-		color: $accent-color;
-		&::before {
-			margin-right: 2rem;
-			border: 0.5rem solid $accent-color;
-			background: $primary-color;
-		}
-	}
-}
-
-.label {
-	display: flex;
-	align-items: center;
-	padding: 0.75rem 0;
-	color: $primary-color;
-	font-size: 1.25rem;
-	text-transform: uppercase;
-	cursor: pointer;
-	transition: all 0.25s linear;
-}
-
-.label::before {
-	display: inline-block;
-	content: "";
-	height: 1.125rem;
-	width: 1.125rem;
-	margin-right: 0.625rem;
-	border: 0.5rem solid $primary-color;
-	border-radius: 50%;
-	transition: all 0.25s linear;
-}
-
-  }
-</style>
  <div class="container single_product_container">
 		<div class="row">
 			<div class="col">
@@ -133,17 +48,41 @@ body {
 					</div>
 					<div class="original_price"><[original_price]></div>
 					<div name="add" class="product_price"><[price]></div>
-          <div class="product_color">
-						<span>Select Color:</span>
-						<ul>
-							<li> <input type="radio" id="s-option" name="selector">
-    <label for="s-option">Bacon</label>
-
-    <div class="check"><div class="inside"></li>
-							<li style="background: #252525"></li>
-							<li style="background: #60b3f3"></li>
-						</ul>
-					</div>
+          			
+          			<!-- TAGLIA -->
+            <div class="align-items-left">
+              <td class="list">
+                <tr>
+                  <label><h5>Taglia:</h5></label>
+                </tr>
+                <tr class="list__item">
+                  <label class="label--radio"  style="margin-left: 30px;">
+                  	<input type="radio" class="radio" checked  name="foo" value="S" style="color: red;">
+                      S
+                  </label>
+                </tr>
+                <tr class="list__item">
+                  <label class="label--radio" style="margin-left: 20px;">
+                  	<input type="radio" class="radio" name="foo" value="M">
+                      M
+                  </label>
+                </tr>
+                <tr class="list__item">
+                  <label class="label--radio" style="margin-left: 20px;">
+                  	<input type="radio" class="radio" name="foo" value="L">
+                      L
+                  </label>
+                </tr>
+                <tr class="list__item">
+                  <label class="label--radio" style="margin-left: 20px;">
+                  	<input type="radio" class="radio" name="foo" value="XL">
+                      XL
+                  </label>
+                </tr>
+              </td>
+            </div>
+  					<!-- END TAGLIA -->
+          			
 					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 
 						<div class="red_button add_to_cart_button" style="margin-left:0px;" id="aggiungi"><a  href="#add">acquista</a></div>
