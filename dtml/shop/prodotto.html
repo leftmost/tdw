@@ -166,16 +166,13 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+
       $("#aggiungi").click(function(){
-        $.post("carrello.php", { id:"<[id_product]>"}, function(msg){ $("#risultato").html(msg);});
+        var radio = $('input[name=foo]:checked').val();
+        $.post("carrello.php", { id:"<[id_product]>", radio:radio }, function(msg){ $("#risultato").html(msg);});
     });
     });
 
-    $(document).ready(function() {
-      $("#aggiungi").click(function(){
-        $.post("notifica.php", { id:"<[id_product]>"}, function(msg){ $("#notifica").html(msg);});
-    });
-    });
 
     setTimeout(function(){
   $('#delete').remove();
