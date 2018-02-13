@@ -18,7 +18,6 @@ $query="SELECT Products.id,Products.Name,Price,Images.id as idImage,Images.Place
         WHERE Catalogs.Type='Women'
         AND Images.Place='1'
         LIMIT 5;";
-        echo $query;
 $result = $db->getResult_array($query);
 $body->setContent("prodottoWoman", $result);
 //query

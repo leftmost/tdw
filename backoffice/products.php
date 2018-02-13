@@ -71,18 +71,50 @@ switch ($_REQUEST['page']) {
 
       //load product id
       $query="SELECT max(id) as id FROM Products";
-      $result = $db->getResult_array($query);
+      $idProduct = $db->getResult_array($query);
       //.Query
 
       //Query insert product into warehouse with id
       $query="INSERT INTO Products_Warehouse SET
-              id_Products='{$result[0]['id']}',
+              id_Products='{$idProduct[0]['id']}',
               Area_Warehouse='{$_POST['warehouse']}',
               Sector_Warehouse='{$_POST['sector']}',
-              Amount='{$_POST['amount']}';";
+              Amount='{$_POST['amount_S']}',
+              Size='S';";
       $result = $db->query($query);
       //.Query
-
+      
+      //Query insert product into warehouse with id
+      $query="INSERT INTO Products_Warehouse SET
+              id_Products='{$idProduct[0]['id']}',
+              Area_Warehouse='{$_POST['warehouse']}',
+              Sector_Warehouse='{$_POST['sector']}',
+              Amount='{$_POST['amount_M']}',
+              Size='M';";
+      $result = $db->query($query);
+      //.Query
+      
+      //Query insert product into warehouse with id
+      $query="INSERT INTO Products_Warehouse SET
+              id_Products='{$idProduct[0]['id']}',
+              Area_Warehouse='{$_POST['warehouse']}',
+              Sector_Warehouse='{$_POST['sector']}',
+              Amount='{$_POST['amount_L']}',
+              Size='L';";
+      $result = $db->query($query);
+      //.Query
+     
+    
+      //Query insert product into warehouse with id
+      $query="INSERT INTO Products_Warehouse SET
+              id_Products='{$idProduct[0]['id']}',
+              Area_Warehouse='{$_POST['warehouse']}',
+              Sector_Warehouse='{$_POST['sector']}',
+              Amount='{$_POST['amount_XL']}',
+              Size='XL';";
+      $result = $db->query($query);
+      //.Query
+      
       $body->setContent("notification", $result); // SET NOTIFICATION
     }
 
@@ -135,16 +167,53 @@ switch ($_REQUEST['page']) {
 
       $result = $db->query($query);
       //.Query PRODOTTO
-
+      
       //Query update area,sector and amount
       $query="UPDATE Products_Warehouse SET
       Area_Warehouse ='{$_POST['warehouse']}',
       Sector_Warehouse ='{$_POST['sector']}',
-      Amount ='{$_POST['amount']}'
+      Amount ='{$_POST['amount_S']}'
       WHERE id_Products ='{$_POST['id']}'
        AND Area_Warehouse ='{$_POST['oldArea']}'
-       AND Sector_Warehouse ='{$_POST['oldSector']}';";
-
+       AND Sector_Warehouse ='{$_POST['oldSector']}'
+       AND Size='S';";
+      $result = $db->query($query);
+      //.Query Products into Warehouse
+      
+      //Query update area,sector and amount
+      $query="UPDATE Products_Warehouse SET
+      Area_Warehouse ='{$_POST['warehouse']}',
+      Sector_Warehouse ='{$_POST['sector']}',
+      Amount ='{$_POST['amount_M']}'
+      WHERE id_Products ='{$_POST['id']}'
+       AND Area_Warehouse ='{$_POST['oldArea']}'
+       AND Sector_Warehouse ='{$_POST['oldSector']}'
+       AND Size='M';";
+      $result = $db->query($query);
+      //.Query Products into Warehouse
+      
+      //Query update area,sector and amount
+      $query="UPDATE Products_Warehouse SET
+      Area_Warehouse ='{$_POST['warehouse']}',
+      Sector_Warehouse ='{$_POST['sector']}',
+      Amount ='{$_POST['amount_L']}'
+      WHERE id_Products ='{$_POST['id']}'
+       AND Area_Warehouse ='{$_POST['oldArea']}'
+       AND Sector_Warehouse ='{$_POST['oldSector']}'
+       AND Size='L';";
+      $result = $db->query($query);
+      //.Query Products into Warehouse
+      
+      //Query update area,sector and amount
+      $query="UPDATE Products_Warehouse SET
+      Area_Warehouse ='{$_POST['warehouse']}',
+      Sector_Warehouse ='{$_POST['sector']}',
+      Amount ='{$_POST['amount_XL']}'
+      WHERE id_Products ='{$_POST['id']}'
+       AND Area_Warehouse ='{$_POST['oldArea']}'
+       AND Sector_Warehouse ='{$_POST['oldSector']}'
+       AND Size='XL';";
+    
       $result = $db->query($query);
       //.Query Products into Warehouse
 
@@ -165,11 +234,41 @@ switch ($_REQUEST['page']) {
     //Query load Area, Sector, Amount of product
     $query="SELECT Area_Warehouse as Area, Sector_Warehouse as Sector, Amount
             FROM Products_Warehouse
-            WHERE id_Products='{$_GET['id']}';";
+            WHERE id_Products='{$_GET['id']}'
+            AND Size='S';";
     $area = $db->getResult_array($query);
     //.Query
-
-    $body->setContent("amount", $area[0]['Amount']); //SET AMOUNT
+    $body->setContent("amount_S", $area[0]['Amount']); //SET AMOUNT S
+    
+    
+    //Query load Area, Sector, Amount of product
+    $query="SELECT Area_Warehouse as Area, Sector_Warehouse as Sector, Amount
+            FROM Products_Warehouse
+            WHERE id_Products='{$_GET['id']}'
+            AND Size='M';";
+    $area = $db->getResult_array($query);
+    //.Query
+    $body->setContent("amount_M", $area[0]['Amount']); //SET AMOUNT M
+    
+    //Query load Area, Sector, Amount of product
+    $query="SELECT Area_Warehouse as Area, Sector_Warehouse as Sector, Amount
+            FROM Products_Warehouse
+            WHERE id_Products='{$_GET['id']}'
+            AND Size='L';";
+    $area = $db->getResult_array($query);
+    //.Query
+    $body->setContent("amount_L", $area[0]['Amount']); //SET AMOUNT L
+    
+    //Query load Area, Sector, Amount of product
+    $query="SELECT Area_Warehouse as Area, Sector_Warehouse as Sector, Amount
+            FROM Products_Warehouse
+            WHERE id_Products='{$_GET['id']}'
+            AND Size='XL';";
+    $area = $db->getResult_array($query);
+    //.Query
+    $body->setContent("amount_XL", $area[0]['Amount']); //SET AMOUNT XL
+    
+    
     $body->setContent("sector", $area[0]['Sector']); //SET SECTOR
     $body->setContent("area", $area[0]['Area']); //SET AREA
 

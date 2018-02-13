@@ -85,15 +85,20 @@ Class shop extends TagLibrary {
 		foreach($data as $key => $value) {
 		 $result .= "
 		 <div class=\"product-item {$pars['type']}\">
-				<div class=\"product discount product_filter\"><a href=\"prodotto.php?id={$value['id']}\">
-					<div class=\"product_image text-center\">
-						<img src=\"image.php?id={$value['idImage']}\"  style=\"width:auto;max-height:221px;max-width:221px;\"  alt=\"\">
-					</div>
-					<div class=\"product_info\">
-						<h6 class=\"product_name\"><a href=\"prodotto.php?id={$value['id']}\">{$value['Name']}</a></h6>
-						<div class=\"product_price\">{$value['Price']} €</div>
-					</div>
-				</a></div>
+				<div class=\"product discount product_filter\">
+                    <a href=\"prodotto.php?id={$value['id']}\">
+					   <div class=\"product_image text-center\">
+					   	<img src=\"image.php?id={$value['idImage']}\"  style=\"width:auto;max-height:221px;max-width:221px;\"  alt=\"\">
+					   </div>
+					   <div class=\"product_info\">
+						  <h6 class=\"product_name\"><a href=\"prodotto.php?id={$value['id']}\">{$value['Name']}</a></h6>
+						  <div class=\"product_price\">{$value['Price']} €</div>
+					   </div>
+				    </a>
+                </div>
+                <div>
+			     <div class=\"red_button add_to_cart_button\"><a href=\"prodotto.php?id={$value['id']}\">VISUALIZZA</a></div>
+		        </div>
 		  </div>";
 	  }
 	  return $result;
@@ -105,7 +110,8 @@ Class shop extends TagLibrary {
 		$result = "";
 		foreach ($data as $key => $value) {
 
-			$result .= "<div class=\"owl-item product_slider_item\">
+			$result .= "
+            <div class=\"owl-item product_slider_item product-item \">
 				<div class=\"product-item\">
 					<div class=\"product discount\">
 						<div class=\"product_image text-center\">
@@ -116,8 +122,10 @@ Class shop extends TagLibrary {
 							<div class=\"product_price\">{$value['Price']}</div>
 						</div>
 					</div>
-					<div class=\"red_button add_to_cart_button\"><a href=\"prodotto.php?id={$value['id']}\">VISUALIZZA</a></div>
-				</div>
+                    <div>
+					   <div class=\"red_button add_to_cart_button\"><a href=\"prodotto.php?id={$value['id']}\">VISUALIZZA</a></div>
+				    </div>
+                </div>
 			</div>";
 		}
 		return $result;
