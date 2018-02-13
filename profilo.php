@@ -88,11 +88,43 @@ switch ($_REQUEST['page']) {
   $order=$result[0]['id'];
   //query
 
-  //delete
-  $query="DELETE FROM Orders_Product WHERE Product_id='{$_GET['id']}';";
+  //query
+  $size=$_GET['size'];
+  $prod=$_GET['id'];
+  $amount=$_GET['amount'];
+  //echo $amount;exit;
+  if($amount>1){
+
+    $query="UPDATE Orders_Product
+            SET Amount=Amount-1
+            WHERE Order_id='$order'
+            AND Product_id='$prod'
+            AND Size='$size';";
+    $result = $db->query($query);
+
+  }else{
+
+    //delete
+    $query="DELETE FROM Orders_Product 
+            WHERE Order_id='$order'
+            AND Product_id='$prod'
+            AND Size='$size';";
+    
+    $result = $db->query($query);
+    //header("location:/profilo.php?page=carrello");
+    //break;
+
+  }
+
+
+    //riposiziona nel magazzino
+  $query="UPDATE products_warehouse
+            SET Amount=Amount+1
+            WHERE id_products='$prod'
+            AND Size='$size';";
   $result = $db->query($query);
-  header("location: /profilo.php?page=carrello");
-  break;
+
+
 
   case 'carrello':
   //query
@@ -105,7 +137,7 @@ switch ($_REQUEST['page']) {
   //query
 
   //query
-  $query="SELECT Products.id,Products.Name,Products.Brand,Products.Price, Orders_Product.Amount
+  $query="SELECT Products.id,Products.Name,Products.Brand,Products.Price, Orders_Product.Amount, Orders_Product.Size
           FROM Orders_Product
           JOIN Products ON Orders_Product.Product_id=Products.id
           WHERE Orders_Product.Order_id='$order';";
@@ -127,7 +159,7 @@ switch ($_REQUEST['page']) {
   case 'acquisti':
   //query
 
-  $query="SELECT Products.Name,Products.Price,Products.Brand,Orders_Product.Amount from Orders
+  $query="SELECT Products.Name,Products.Price,Products.Brand,Orders_Product.Amount,Orders_Product.Size from Orders
           JOIN Orders_Product ON Orders.id=Orders_Product.Order_id
           JOIN Products ON Orders_Product.Product_id=Products.id
           WHERE Orders.id_Status='3'

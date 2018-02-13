@@ -159,6 +159,38 @@ Class shop extends TagLibrary {
         }
         return $result;
     }
+    // tabella carrello
+    function carrello($name, $data, $pars) {
+        if(!is_array($data)){return $result="";}
+        //controllo se ha almeno un elemento
+        if(!empty($data)){
+            $result = "<table class=\"table table-bordered table-striped\">\n";
+            echo "<!-- intestazione -->";
+            $result .= "<thead>\n";
+            foreach($data[0] as $key => $value) {
+                if (!is_numeric($key)) {
+                    $result .= "<th>{$key}</th>\n";
+                }
+            }
+            $result .= "<th>Remove</th>\n";
+            $result .= "</thead>\n";
+            echo "<!-- end_intestazione -->";
+            foreach($data as $row) {
+                $result .= "<tr>\n";
+                foreach($row as $key => $value) {
+                    if (!is_numeric($key)) {
+                        $result .= "<td>$value</td>\n";
+                    }
+                }
+                $result .= "<td><a href=\"profilo.php?page=delete&id=$row[0]&size=$row[5]&amount=$row[4]\" style=\"color: black;\"> Delete</a></td>\n";
+                $result .= "</tr>\n";
+            }
+            $result .= "</table>\n";
+        }else{
+            $result = "<p>Carrello vuoto</p><br />";
+        }
+        return $result;
+    }
     // tabella acquisti
     function tabacquisti($name, $data, $pars) {
         if(!is_array($data)){return $result="";}

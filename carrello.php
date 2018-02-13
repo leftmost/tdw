@@ -3,6 +3,7 @@
 require "include/template2.inc.php";
 require "include/dbms.inc.php";
 require "include/auth.inc.php";
+//echo $_POST['radio'];exit;
 $date = date('Y/m/d');
 
 if (isset($_POST['id'])){
@@ -13,6 +14,35 @@ if (isset($_POST['id'])){
     </div>";
     exit;
   }
+  // controlla se il prodotto è disponibile
+  $query="SELECT * FROM products_warehouse
+          WHERE id_products='{$_POST['id']}'
+          AND size='{$_POST['radio']}'
+          AND amount>0;";
+  $result = $db->getResult_array($query);
+  //query
+
+
+  //se il prodotto è disponibile
+  if(!empty($result)){
+
+    //diminuisce il magazzino di una quantità
+    $query="UPDATE products_warehouse
+            SET Amount=Amount-1
+            WHERE id_products='{$_POST['id']}'
+            AND Size='{$_POST['radio']}';";
+    $result = $db->query($query);
+    //echo $result;exit;
+    //query
+  }else{
+    echo "<div id='delete' class=\"alert alert-warning\" role=\"alert\" style=\"margin-top:16px; margin-left:25px; padding:8px;\">
+      <i class=\"fa fa-warning\" aria-hidden=\"true\"></i> Prodotto non disponibile!
+    </div>";
+    exit;
+
+  }
+
+
   // controlla se l'utente ha un ordine in sospeso
   $query="SELECT * FROM Orders
           JOIN Users ON Orders.Username_Users='{$_SESSION['auth']['Username']}'
@@ -36,9 +66,10 @@ if (isset($_POST['id'])){
     //.query
 
     //aggiungi prodotto all'ordine
-    $query="INSERT INTO Orders_Product(`Order_id`,`Product_id`,`Amount`)
-            VALUES('$maxID','{$_POST['id']}','1')";
+    $query="INSERT INTO Orders_Product(Order_id, Product_id, Amount, Size)
+            VALUES('$maxID','{$_POST['id']}','1','{$_POST['radio']}')";
     $result = $db->query($query);
+    
     //.Query
   }else{
     //utente ha un ordine in sospeso
@@ -55,14 +86,15 @@ if (isset($_POST['id'])){
     //Seleziono ordine in sospeso
     $query="SELECT * FROM Orders_Product
             WHERE Order_id='$idOrder'
-            AND Product_id='{$_POST['id']}'";
+            AND Product_id='{$_POST['id']}'
+            AND Size='{$_POST['radio']}'";
     $prodottoCarrello = $db->getResult_array($query);
     //.query
 
     if(empty($prodottoCarrello)){
       //inserisco prodotto nel carrello
-      $query="INSERT INTO Orders_Product(`Order_id`,`Product_id`,`Amount`)
-              VALUES('$idOrder','{$_POST['id']}','1')";
+      $query="INSERT INTO Orders_Product(Order_id, Product_id, Amount, Size)
+              VALUES('$idOrder','{$_POST['id']}','1','{$_POST['radio']}')";
       $result = $db->query($query);
       //.Query
 
@@ -71,7 +103,8 @@ if (isset($_POST['id'])){
       $query="UPDATE Orders_Product
               SET Amount=Amount+1
               WHERE Order_id='$idOrder'
-              AND Product_id='{$_POST['id']}';";
+              AND Product_id='{$_POST['id']}'
+              AND Size='{$_POST['radio']}';";
       $result = $db->query($query);
       //.Query
     }
